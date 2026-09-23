@@ -23,7 +23,6 @@ dnf install -y \
     make \
     pkgconfig \
     libnl3-devel \
-    libxtables-devel \
     tar \
     wget
 
@@ -44,7 +43,7 @@ dkms install -m jool -v "${JOOL_VERSION}"
 
 echo "--- Building userspace tools ---"
 cd "${JOOL_SRC}"
-./configure
+./configure --without-xtables
 make -j"$(nproc)" -C src/usr
 make -C src/usr install
 ldconfig
