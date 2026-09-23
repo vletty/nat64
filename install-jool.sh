@@ -43,7 +43,7 @@ dkms install -m jool -v "${JOOL_VERSION}"
 
 echo "--- Building userspace tools ---"
 cd "${JOOL_SRC}"
-./configure --without-xtables
+./configure --without-xtables --prefix=/usr
 make -j"$(nproc)" -C src/usr
 make -C src/usr install
 ldconfig
