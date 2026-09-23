@@ -1,0 +1,23 @@
+{
+    "ipv4_iface": "eth0",
+    "ipv4_addr": "10.0.0.1",
+
+    "ipv6_iface": "eth1",
+    "ipv6_prefix": "2001:db8:1::",
+
+    "nat64_prefix": "64:ff9b::/96",
+
+    "external_ipv6": "2001:db8:2::1",
+
+    "forwarded_ports": [
+        { "port": 443, "protocol": "TCP" },
+        { "port": 3389, "protocol": "TCP" }
+    ],
+
+    "pool_size": 16,
+    "rotation_interval": 300,
+    "deprecated_lifetime": 600,
+
+    "secret_key_file": "/etc/nat64/secret.key",
+    "nft_rules_file": "/etc/nat64/snat-rules.nft"
+}

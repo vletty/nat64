@@ -1,0 +1,21 @@
+[Unit]
+Description=NAT64 Temporary IPv6 Address Generator (RFC 7217 / RFC 8981)
+After=network-online.target jool-nat64.service
+Wants=network-online.target
+Requires=jool-nat64.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/nat64-addr-gen -c /etc/nat64/nat64.conf
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+
+ProtectSystem=strict
+ReadWritePaths=/etc/nat64 /var/lib/nat64
+PrivateTmp=true
+NoNewPrivileges=false
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW
+
+[Install]
+WantedBy=multi-user.target

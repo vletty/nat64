@@ -1,0 +1,13 @@
+[Unit]
+Description=Jool Stateful NAT64 Translator
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/bash -c 'modprobe jool && jool file handle /etc/nat64/jool.conf'
+ExecStop=/bin/bash -c 'jool instance remove default 2>/dev/null; modprobe -r jool 2>/dev/null; true'
+
+[Install]
+WantedBy=multi-user.target
